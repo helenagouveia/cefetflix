@@ -1,0 +1,29 @@
+<html>
+<head>
+	<meta charset="uft-8"/>
+	<link rel="stylesheet" type="text/css" href="./cefetflix/css/filmes.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+	<script src="./cefetflix/js/jquery.min.js"></script>
+	<script src="./cefetflix/js/filmes.js"></script>
+	<script>
+		$(function(){
+			$.each(filmes, function(id, obj){
+				$("#filmes").append($("<img />").attr("src", obj.figura))
+				.append($("<li />").text(obj.titulo))
+				.append($("<p />").text(obj.resumo))
+				.append($("<li />").text(obj.generos))
+				.append($("<li />").text(obj.elenco))
+				.append($("<li />").text(obj.descricao))
+				
+				
+			})
+		})
+	</script>
+</head>
+	<body>
+		<h1>Cefetflix</h1>
+		<ul id="filmes"></ul>
+		
+	</body>
+</html>
