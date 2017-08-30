@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<title> Cefetflix</title>
+		<link rel= "stylesheet" type="text/css" href="./css/estilo.css"/>
+		<link href="https://fonts.googleapis.com/css?family=Graduate" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+		<link rel="shortcut icon" href="http://static.tumblr.com/b9su5vg/Rbyovh2ri/sem_t__tulo.png" />
+		<script src="./js/filmes.js"></script>
+		<script src="./js/jquery.min.js"></script>
+		<script>
+		
+			$(function(){
+				
+				$.each(filmes, function(indice, filme){
+					var $divOpiniao = $("<div />").addClass("box-opiniao");
+					var $divTitulos = $("<div />").addClass("box-semelhantes");
+					var $divGenero = $("<div />").addClass("box-generos");
+					var $divElenco = $("<div />").addClass("box-elenco");
+					
+					$.each(filme.opinioes, function(i, obj){
+						$divOpiniao.append($("<h1/>").addClass("box-opiniao-h1").text(obj.rating)).append($("<p/>").addClass("box-opiniao-p").text(obj.descricao));
+					});
+					
+					$.each(filme.titulosSemelhantes, function(i, obj){
+						$divTitulos.append($("<li/>").text(filmes[obj-1].titulo));
+					});
+					$.each(filme.generos, function(i, obj){
+						$divGenero.append($("<li/>").addClass("box-genero-li").text(obj))
+					})
+					$.each(filme.elenco, function(i, obj){
+						$divElenco.append($("<li/>").text(obj))
+					})
+					
+					$("#filmes")
+						.append($("<h1 />")
+							.addClass("titulo")
+							.text(filme.titulo)
+						)	.append($("<h4 />")
+							.addClass("classificação")
+							.text(filme.classificacao)
+						)
+						.append($("<img />")
+							.addClass("figura")
+							.attr("src",filme.figura)
+						)
+						.append($("<p />")
+							.addClass("resumo")
+							.text(filme.resumo)
+						)
+						.append($("<h3/>")
+							.addClass("generos")
+							.text("generos")
+						)
+						.append($divGenero)
+						.append($("<h3/>")
+							.addClass("semelhantes")
+							.text("Títulos Semelhantes")
+						)
+						.append($divTitulos)
+					
+						.append($("<h3/>")
+							.addClass("elenco")
+							.text("Elenco")
+						)
+						.append($divElenco)
+						.append($divOpiniao);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<img src="http://static.tumblr.com/b9su5vg/8rrovgzs9/cefet.png" class="logo" />
+		<div class="flix">
+			<div id="filmes"></div>
+		</div>
+	</body>
+</html>
